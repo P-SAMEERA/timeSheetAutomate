@@ -12,7 +12,7 @@ export default function AddUserModal({ onClose, onAdd }) {
   const [loading, setLoading] = useState(false);
 
   // ✅ Always use BASE_URL without trailing slash
-  const BASE_URL = "https://timesheetautomate.onrender.com";
+  // const BASE_URL = "https://timesheetautomate.onrender.com";
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -33,7 +33,7 @@ export default function AddUserModal({ onClose, onAdd }) {
       const id = localStorage.getItem("userId");
 
       // ✅ Ensure correct URL join
-      const url = `${BASE_URL}api/admin/${id}/add`;
+      const url = `https://timesheetautomate.onrender.com/api/${id}/add`;
       const res = await axios.post(url, formData);
 
       alert("✅ User added successfully!");
