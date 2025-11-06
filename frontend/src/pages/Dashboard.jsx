@@ -105,8 +105,9 @@ const handleUpdate = async () => {
   };
 const handleLogout = () => {
   localStorage.clear();
-  window.location.reload(); // optional – only if you must refresh the app state
+  navigate("/", { replace: true });
 };
+
 
 
   const getMaxHours = () => {
