@@ -15,7 +15,7 @@ export default function AdminDashboard() {
   const [deleteMode, setDeleteMode] = useState(false);
   const [adminId, setAdminId] = useState(null);
 
-  // const BASE_URL = "https://timesheetautomate.onrender.com";
+  const BASE_URL = "https://timesheetautomate.onrender.com";
 
   // Fetch admin + users on mount
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function AdminDashboard() {
 
   const fetchUsers = async (id) => {
     try {
-      const res = await axios.get(`https://timesheetautomate.onrender.com/api/admin/${id}/all`);
+      const res = await axios.get(`${BASE_URL}/api/admin/${id}/all`);
       if (res.data?.payload && Array.isArray(res.data.payload)) {
         setUsers(res.data.payload);
       } else {
