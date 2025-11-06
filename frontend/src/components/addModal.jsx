@@ -10,7 +10,7 @@ export default function AddUserModal({ onClose, onAdd }) {
     isActive: true,
   });
   const [loading, setLoading] = useState(false);
-  const BASE_URL = "https://timesheetautomate.onrender.com";
+  // const BASE_URL = "https://timesheetautomate.onrender.com";
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,7 +29,7 @@ export default function AddUserModal({ onClose, onAdd }) {
     try {
       setLoading(true);
       const id = localStorage.getItem("userId");
-      const res = await axios.post(`${BASE_URL}/api/admin/${id}/add`, formData);
+      const res = await axios.post(`https://timesheetautomate.onrender.com/api/admin/${id}/add`, formData);
 
       alert("✅ User added successfully!");
       // 🔥 Trigger refresh AFTER alert is closed
