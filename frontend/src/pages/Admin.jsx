@@ -15,7 +15,7 @@ export default function AdminDashboard() {
   const [deleteMode, setDeleteMode] = useState(false);
   const [adminId, setAdminId] = useState(null);
 
-  const BASE_URL = "https://timesheetautomate.onrender.com/";
+  const BASE_URL = "https://timesheetautomate.onrender.com";
 
   // Fetch admin + users on mount
   useEffect(() => {
