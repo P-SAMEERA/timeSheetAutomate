@@ -105,7 +105,6 @@ const handleUpdate = async () => {
   };
 const handleLogout = () => {
   localStorage.clear();
-  navigate("/", { replace: true });
   window.location.reload(); // optional – only if you must refresh the app state
 };
 
