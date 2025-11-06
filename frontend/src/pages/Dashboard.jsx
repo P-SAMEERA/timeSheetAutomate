@@ -27,18 +27,24 @@ export default function Dashboard() {
     ]);
   }, []);
 
-  const handleChange = (index, field, value) => {
-    const updated = [...tasks];
-    updated[index][field] = value;
-    setTasks(updated);
-    if (field === "hours") {
-      const total = updated.reduce(
-        (acc, task) => acc + (parseFloat(task.hours) || 0),
-        0
-      );
-      setTotalHours(total);
-    }
-  };
+const handleUpdate = async () => {
+  try {
+    const response = await axios.put(
+      `https://timesheetautomate.onrender.com/api/timesheet/update`,
+      {
+        userId: localStorage.getItem("userId"),
+        tasks,         // your updated tasks array
+        totalHours,    // calculated total hours
+      }
+    );
+    alert("✅ Timesheet updated successfully!");
+    console.log("Update response:", response.data);
+  } catch (error) {
+    console.error("❌ Error updating timesheet:", error);
+    alert(`Failed to update timesheet: ${error.response?.data?.message || error.message}`);
+  }
+};
+
 
   const handleSubmit = async () => {
     if (!selectedDate) return alert("❌ Please select a date first!");
