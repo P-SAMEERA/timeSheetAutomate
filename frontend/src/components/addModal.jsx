@@ -10,7 +10,7 @@ export default function AddUserModal({ onClose, onAdd }) {
     isActive: true,
   });
   const [loading, setLoading] = useState(false);
-  const BASE_URL = "https://timesheetautomate.onrender.com/";
+  const BASE_URL = "https://timesheetautomate.onrender.com";
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
