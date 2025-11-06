@@ -1,0 +1,158 @@
+{
+  "2025-03-05": {
+    "shiftType": "A shift",
+    "isOT": false,
+    "entries": [
+      { "task": "Assembly", "hours": 3, "description": "Chassis setup" },
+      { "task": "Inspection", "hours": 4, "description": "Quality checks" },
+      { "task": "Documentation", "hours": 1, "description": "Report summary" }
+    ],
+    "total": 8
+  },
+  "2025-03-10": {
+    "shiftType": "B shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Welding", "hours": 4, "description": "Body weld" },
+      { "task": "Rework", "hours": 3, "description": "Panel correction" },
+      { "task": "Inspection", "hours": 2, "description": "Final QC" }
+    ],
+    "total": 9
+  },
+  "2025-03-17": {
+    "shiftType": "General",
+    "isOT": false,
+    "entries": [
+      { "task": "Assembly", "hours": 5, "description": "Interior fitment" },
+      { "task": "Testing", "hours": 2, "description": "Functional test" }
+    ],
+    "total": 7
+  },
+  "2025-03-28": {
+    "shiftType": "A shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Painting", "hours": 4, "description": "Color coat" },
+      { "task": "Polishing", "hours": 3, "description": "Surface finish" },
+      { "task": "Packaging", "hours": 2, "description": "Ready for shipment" }
+    ],
+    "total": 9
+  },
+  "2025-04-03": {
+    "shiftType": "General",
+    "isOT": false,
+    "entries": [
+      { "task": "Material Handling", "hours": 3, "description": "Inventory movement" },
+      { "task": "Assembly", "hours": 4, "description": "Engine mount" },
+      { "task": "Inspection", "hours": 1, "description": "Safety validation" }
+    ],
+    "total": 8
+  },
+  "2025-04-12": {
+    "shiftType": "C shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Maintenance", "hours": 2, "description": "Machine oiling" },
+      { "task": "Welding", "hours": 4, "description": "Frame join" },
+      { "task": "Testing", "hours": 3, "description": "Night run check" }
+    ],
+    "total": 9
+  },
+  "2025-04-20": {
+    "shiftType": "B shift",
+    "isOT": false,
+    "entries": [
+      { "task": "Inspection", "hours": 4, "description": "Surface quality" },
+      { "task": "Documentation", "hours": 2, "description": "Batch record" },
+      { "task": "Rework", "hours": 2, "description": "Minor fixes" }
+    ],
+    "total": 8
+  },
+  "2025-04-29": {
+    "shiftType": "A shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Assembly", "hours": 3, "description": "Dashboard fitting" },
+      { "task": "Painting", "hours": 3, "description": "Base coat" },
+      { "task": "Inspection", "hours": 3, "description": "QC validation" }
+    ],
+    "total": 9
+  },
+  "2025-05-02": {
+    "shiftType": "General",
+    "isOT": false,
+    "entries": [
+      { "task": "Inventory", "hours": 3, "description": "Parts check" },
+      { "task": "Documentation", "hours": 2, "description": "Update logs" },
+      { "task": "Meeting", "hours": 3, "description": "Shift briefing" }
+    ],
+    "total": 8
+  },
+  "2025-05-10": {
+    "shiftType": "A shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Welding", "hours": 4, "description": "Frame weld" },
+      { "task": "Assembly", "hours": 3, "description": "Component join" },
+      { "task": "Inspection", "hours": 2, "description": "End-of-line check" }
+    ],
+    "total": 9
+  },
+  "2025-05-18": {
+    "shiftType": "C shift",
+    "isOT": false,
+    "entries": [
+      { "task": "Maintenance", "hours": 3, "description": "Conveyor belt fix" },
+      { "task": "Testing", "hours": 4, "description": "Night performance test" }
+    ],
+    "total": 7
+  },
+  "2025-05-27": {
+    "shiftType": "B shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Assembly", "hours": 4, "description": "Door fitting" },
+      { "task": "Painting", "hours": 3, "description": "Final coat" },
+      { "task": "Inspection", "hours": 2, "description": "Visual QA" }
+    ],
+    "total": 9
+  },
+  "2025-03-14": {
+    "shiftType": "LEAVE",
+    "isOT": false,
+    "entries": [],
+    "total": 0
+  },
+  "2025-04-08": {
+    "shiftType": "LEAVE",
+    "isOT": false,
+    "entries": [],
+    "total": 0
+  },
+  "2025-05-09": {
+    "shiftType": "LEAVE",
+    "isOT": false,
+    "entries": [],
+    "total": 0
+  },
+  "2025-03-06": {
+    "shiftType": "A shift",
+    "isOT": false,
+    "entries": [
+      { "task": "Assembly", "hours": 3, "description": "Chassis setup" },
+      { "task": "Inspection", "hours": 4, "description": "Quality checks" },
+      { "task": "Documentation", "hours": 1, "description": "Report summary" }
+    ],
+    "total": 8
+  },
+  "2025-03-11": {
+    "shiftType": "B shift",
+    "isOT": true,
+    "entries": [
+      { "task": "Welding", "hours": 4, "description": "Body weld" },
+      { "task": "Rework", "hours": 3, "description": "Panel correction" },
+      { "task": "Inspection", "hours": 2, "description": "Final QC" }
+    ],
+    "total": 9
+  }
+}
