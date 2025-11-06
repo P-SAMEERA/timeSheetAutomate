@@ -107,6 +107,8 @@ const handleLogout = () => {
   localStorage.clear()
   setLoggedIn(false)
   navigate('/', { replace: true })
+  window.location.reload();
+
 }
 
 
