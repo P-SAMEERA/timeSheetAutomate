@@ -106,7 +106,7 @@ const handleUpdate = async () => {
   const handleLogout = () => {
     localStorage.clear();
     window.location.reload(true);
-    navigate("/");
+    navigate("https://time-sheet-automate-30xgr0hw7-p-sameeras-projects.vercel.app/");
   };
 
   const getMaxHours = () => {
