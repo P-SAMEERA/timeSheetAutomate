@@ -10,42 +10,47 @@ import Admin from './pages/Admin'
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
-  // check login status on reload
   useEffect(() => {
     const userId = localStorage.getItem('userId')
     const role = localStorage.getItem('role')
-    if (userId && role) {
-      setLoggedIn(true)
-    } else {
-      setLoggedIn(false)
+    setLoggedIn(!!(userId && role))
+  }, [])
+
+  // watch for manual clear or other changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const userId = localStorage.getItem('userId')
+      const role = localStorage.getItem('role')
+      setLoggedIn(!!(userId && role))
     }
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   return (
-    <>
-      <Routes>
-        {/* Login route */}
-        <Route
-          path="/"
-          element={
-            loggedIn ? <Navigate to="/dashboard" /> : <Login setLoggedIn={setLoggedIn} />
-          }
-        />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          loggedIn ? (
+            <Navigate to="/dashboard" />
+          ) : (
+            <Login setLoggedIn={setLoggedIn} />
+          )
+        }
+      />
 
-        {/* Protected Routes */}
-        {loggedIn && (
-          <>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/edit" element={<EditSheets />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/admin" element={<Admin />} />
-          </>
-        )}
+      {loggedIn && (
+        <>
+          <Route path="/dashboard" element={<Dashboard setLoggedIn={setLoggedIn} />} />
+          <Route path="/edit" element={<EditSheets />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
+        </>
+      )}
 
-        {/* Redirect any unknown route */}
-        <Route path="*" element={<Navigate to={loggedIn ? '/dashboard' : '/'} />} />
-      </Routes>
-    </>
+      <Route path="*" element={<Navigate to={loggedIn ? '/dashboard' : '/'} />} />
+    </Routes>
   )
 }
 
