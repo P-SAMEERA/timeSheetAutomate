@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
-const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ added `onRefresh`
+import axios from "axios";
+
+const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {
   const [timesheets, setTimesheets] = useState({});
   const [groupedByMonth, setGroupedByMonth] = useState({});
   const [selectedMonth, setSelectedMonth] = useState(null);
-  // const BASE_URL = 'https://timesheetautomate.onrender.com';
+
+  // ✅ Use safe BASE_URL without trailing slash
+  const BASE_URL = "https://timesheetautomate.onrender.com";
+
   // Parse and group when admin opens modal
   useEffect(() => {
     if (!allTimeSheets || allTimeSheets.length === 0) return;
@@ -62,64 +66,51 @@ const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ ad
       : formatted.toFixed(1).replace(/\.0$/, "");
   };
 
-  // Download handler
+  // ✅ Fixed download handler URL (no double slash issue)
   const handleDownload = async () => {
-  if (!selectedMonth || !user?._id) {
-    console.error("Missing selectedMonth or user ID");
-    return;
-  }
+    if (!selectedMonth || !user?._id) {
+      console.error("Missing selectedMonth or user ID");
+      return;
+    }
 
-  try {
-    // Parse month and year from selectedMonth (e.g., "October 2025")
-    const [monthName, yearStr] = selectedMonth.split(" ");
-    const year = parseInt(yearStr, 10);
+    try {
+      const [monthName, yearStr] = selectedMonth.split(" ");
+      const year = parseInt(yearStr, 10);
+      const month = new Date(`${monthName} 1, ${year}`).getMonth() + 1;
 
-    // Convert month name → numeric month (1–12)
-    const month = new Date(`${monthName} 1, ${year}`).getMonth() + 1;
+      const response = await axios.get(
+        `${BASE_URL}/api/timesheet/download/${user._id}/${month}/${year}`,
+        { responseType: "blob" }
+      );
 
-    // Make request to backend for file (responseType must be 'blob' for file download)
-    const response = await axios.get(
-      `https://timesheetautomate.onrender.com/api/timesheet/download/${user._id}/${month}/${year}`,
-      {
-        responseType: "blob",
+      const blob = new Blob([response.data]);
+      const url = window.URL.createObjectURL(blob);
+
+      const contentDisposition = response.headers["content-disposition"];
+      let filename = `timesheet_${user.userId}_${monthName}_${year}.xlsx`;
+      if (contentDisposition) {
+        const match = contentDisposition.match(/filename="?([^"]+)"?/);
+        if (match) filename = match[1];
       }
-    );
 
-    // Create a downloadable link for the blob
-    const blob = new Blob([response.data]);
-    const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", filename);
+      document.body.appendChild(link);
+      link.click();
 
-    // Try to detect filename from headers or use a default
-    const contentDisposition = response.headers["content-disposition"];
-    let filename = `timesheet_${user.userId}_${monthName}_${year}.xlsx`;
-    if (contentDisposition) {
-      const match = contentDisposition.match(/filename="?([^"]+)"?/);
-      if (match) filename = match[1];
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+
+      if (typeof onRefresh === "function") {
+        await onRefresh();
+      }
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Failed to download file. Check console for details.");
     }
+  };
 
-    // Create temporary <a> tag to download file
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", filename);
-    document.body.appendChild(link);
-    link.click();
-
-    // Cleanup
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(link);
-
-    // ✅ NEW: trigger refresh after download (instant update)
-    if (typeof onRefresh === "function") {
-      await onRefresh();
-    }
-
-  } catch (error) {
-    console.error("Download failed:", error);
-    alert("Failed to download file. Check console for details.");
-  }
-};
-
-  // ✅ Function to calculate days in selected month dynamically
   const getDaysArray = (monthKey) => {
     const [monthName, yearStr] = monthKey.split(" ");
     const year = parseInt(yearStr, 10);
@@ -131,7 +122,6 @@ const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ ad
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 text-gray-200 z-50 p-4">
       <div className="bg-gray-900 w-full max-w-6xl rounded-lg shadow-lg p-6 overflow-y-auto max-h-[90vh]">
-        {/* Header */}
         <div className="flex justify-between items-center border-b border-gray-700 pb-3 mb-4">
           <h2 className="text-xl font-semibold text-yellow-400">
             {user?.userId} — Monthly Time Sheets
@@ -144,7 +134,6 @@ const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ ad
           </button>
         </div>
 
-        {/* If no month selected, show month cards */}
         {!selectedMonth ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {Object.keys(groupedByMonth).length === 0 ? (
@@ -170,7 +159,6 @@ const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ ad
           </div>
         ) : (
           <>
-            {/* Monthly Grid View */}
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold text-yellow-400">
                 {selectedMonth}
@@ -206,7 +194,6 @@ const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ ad
                     ))}
                   </tr>
                 </thead>
-
                 <tbody className="bg-gray-900 divide-y divide-gray-700">
                   {(() => {
                     const entries = monthlyData[selectedMonth] || [];
