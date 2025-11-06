@@ -31,7 +31,7 @@ export default function AdminDashboard() {
 
   const fetchUsers = async (id) => {
     try {
-      const res = await axios.get(`https://timesheetautomate.onrender.com/api/${id}/all`);
+      const res = await axios.get(`https://timesheetautomate.onrender.com/api/admin/${id}/all`);
       if (res.data?.payload && Array.isArray(res.data.payload)) {
         setUsers(res.data.payload);
       } else {
