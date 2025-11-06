@@ -103,11 +103,12 @@ const handleUpdate = async () => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     navigate("/admin", { state: { userData } });
   };
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.reload(true);
-    navigate("/");
-  };
+const handleLogout = () => {
+  localStorage.clear();
+  navigate("/", { replace: true });
+  window.location.reload(); // optional – only if you must refresh the app state
+};
+
 
   const getMaxHours = () => {
     if (isOT) return 24;
