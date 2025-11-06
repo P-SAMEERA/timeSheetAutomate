@@ -17,7 +17,7 @@ const Profile = () => {
       try {
         setLoading(true);
         const response = await axios.post(
-          "http://localhost:5000/api/admin/one",
+          "https://timesheetautomate.onrender.com/api/admin/one",
           { userId: id },
           { headers: { "Content-Type": "application/json" } }
         );
