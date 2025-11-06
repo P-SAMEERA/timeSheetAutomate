@@ -105,7 +105,7 @@ const handleUpdate = async () => {
   };
 const handleLogout = () => {
   localStorage.clear()
-  setLoggedIn(false)
+  // setLoggedIn(false)
   navigate('/', { replace: true })
   window.location.reload();
 
