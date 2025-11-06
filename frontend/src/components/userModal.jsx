@@ -79,7 +79,7 @@ const UserModal = ({ user, onClose, allTimeSheets, onRefresh }) => {   // ✅ ad
 
     // Make request to backend for file (responseType must be 'blob' for file download)
     const response = await axios.get(
-      `${BASE_URL}/api/timesheet/download/${user._id}/${month}/${year}`,
+      `${BASE_URL}api/timesheet/download/${user._id}/${month}/${year}`,
       {
         responseType: "blob",
       }
