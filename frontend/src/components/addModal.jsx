@@ -33,7 +33,7 @@ export default function AddUserModal({ onClose, onAdd }) {
       const id = localStorage.getItem("userId");
 
       // ✅ Ensure correct URL join
-      const url = `${BASE_URL}/api/admin/${id}/add`;
+      const url = `${BASE_URL}api/admin/${id}/add`;
       const res = await axios.post(url, formData);
 
       alert("✅ User added successfully!");
