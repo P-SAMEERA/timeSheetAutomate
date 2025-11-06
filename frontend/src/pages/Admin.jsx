@@ -31,7 +31,7 @@ export default function AdminDashboard() {
 
   const fetchUsers = async (id) => {
     try {
-      const res = await axios.get(`${BASE_URL}/api/admin/${id}/all`);
+      const res = await axios.get(`${BASE_URL}api/admin/${id}/all`);
       if (res.data?.payload && Array.isArray(res.data.payload)) {
         setUsers(res.data.payload);
       } else {
