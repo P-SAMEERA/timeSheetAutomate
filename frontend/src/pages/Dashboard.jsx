@@ -104,9 +104,11 @@ const handleUpdate = async () => {
     navigate("/admin", { state: { userData } });
   };
 const handleLogout = () => {
-  localStorage.clear();
-  navigate("/", { replace: true });
-};
+  localStorage.clear()
+  setLoggedIn(false)
+  navigate('/', { replace: true })
+}
+
 
 
 
