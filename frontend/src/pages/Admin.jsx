@@ -46,7 +46,7 @@ export default function AdminDashboard() {
   const handleUserClick = async (user) => {
     if (deleteMode || !adminId) return;
     try {
-      const res = await axios.get(`${BASE_URL}/api/timesheet/${user._id}/all`);
+      const res = await axios.get(`${BASE_URL}api/timesheet/${user._id}/all`);
       const payload = res.data?.payload || [];
       setSelectedUser(user);
       setUserTimesheets(payload);
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
   const handleDeleteClick = async (user) => {
     if (!adminId) return;
     try {
-      await axios.delete(`${BASE_URL}/api/admin/${adminId}/delete`, {
+      await axios.delete(`${BASE_URL}api/admin/${adminId}/delete`, {
         data: { id: user._id, userId: user.userId, name: user.name },
       });
       await fetchUsers(adminId); // refresh after soft delete
@@ -72,7 +72,7 @@ export default function AdminDashboard() {
   const handleReactivateClick = async (user) => {
     if (!adminId) return;
     try {
-      await axios.put(`${BASE_URL}/api/admin/${adminId}/update`, {
+      await axios.put(`${BASE_URL}api/admin/${adminId}/update`, {
         id: user._id,
         userId: user.userId,
         name: user.name,
