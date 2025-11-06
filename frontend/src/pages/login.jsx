@@ -26,7 +26,7 @@ const Login = ({ setLoggedIn }) => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5000/api/login", {
+      const response = await axios.post("https://timesheetautomate.onrender.com/api/login", {
         userId: formData.username,
         password: formData.password,
       });
