@@ -111,6 +111,21 @@ const handleLogout = () => {
 
 }
 
+const handleChange = (index, field, value) => {
+  setTasks((prevTasks) => {
+    const updated = [...prevTasks];
+    updated[index][field] = value;
+
+    // Recalculate total hours automatically when hours field changes
+    const newTotal = updated.reduce(
+      (sum, t) => sum + (parseFloat(t.hours) || 0),
+      0
+    );
+    setTotalHours(newTotal);
+
+    return updated;
+  });
+};
 
 
 
