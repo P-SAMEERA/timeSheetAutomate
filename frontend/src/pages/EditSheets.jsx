@@ -253,6 +253,29 @@ const EditSheets = () => {
 
                         {expandedDate === date && (
                           <div className="mt-4">
+                            {/* SHIFT TYPE EDITOR */}
+<div className="mb-3">
+  <label className="text-gray-300 mr-3 font-medium">Shift Type:</label>
+  <select
+    disabled={!editMode}
+    value={editableData.shiftType}
+    onChange={(e) => {
+      const updated = { ...editableData };
+      updated.shiftType = e.target.value;
+      setEditableData(updated);
+    }}
+    className={`px-3 py-1 rounded-md bg-gray-800 border ${
+      editMode ? "border-yellow-400" : "border-gray-700"
+    } text-gray-200`}
+  >
+    <option value="WORK">WORK</option>
+    <option value="LEAVE">LEAVE</option>
+    <option value="WFH">WFH</option>
+    <option value="HOLIDAY">HOLIDAY</option>
+    <option value="OT">OT</option>
+  </select>
+</div>
+
                             <table className="w-full border border-gray-700 rounded-lg overflow-hidden">
                               <thead className="bg-gray-800 text-gray-200">
                                 <tr>
@@ -329,6 +352,27 @@ const EditSheets = () => {
                                 )}
                               </tbody>
                             </table>
+                            {/* ADD NEW TASK ROW */}
+<button
+  onClick={() => {
+    if (!editMode) return;
+    const updated = { ...editableData };
+    updated.entries = [
+      ...updated.entries,
+      { task: "", hours: "", description: "" },
+    ];
+    setEditableData(updated);
+  }}
+  className={`mt-3 px-4 py-2 rounded-lg font-semibold ${
+    editMode
+      ? "bg-blue-500 text-white"
+      : "bg-gray-700 text-gray-500 cursor-not-allowed"
+  }`}
+  disabled={!editMode}
+>
+  + Add Row
+</button>
+
 
                             <div className="flex justify-end gap-4 mt-4">
                               <button
@@ -402,6 +446,7 @@ const EditSheets = () => {
 
                     {expandedMonth === monthKey && (
                       <div className="mt-4 overflow-x-auto">
+                        
                         <table className="min-w-full border border-gray-700 rounded-lg overflow-hidden">
                           <thead className="bg-gray-800 text-yellow-400 text-sm uppercase">
                             <tr>
