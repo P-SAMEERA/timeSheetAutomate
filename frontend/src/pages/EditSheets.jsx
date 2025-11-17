@@ -268,9 +268,9 @@ const EditSheets = () => {
       editMode ? "border-yellow-400" : "border-gray-700"
     } text-gray-200`}
   >
-    <option value="A Shift">A Shift</option>
-    <option value="B Shift">B Shift</option>
-    <option value="C Shift">C Shift</option>
+    <option value="A Shift">A shift</option>
+    <option value="B Shift">B shift</option>
+    <option value="C Shift">C shift</option>
     <option value="GENERAL">GENERAL</option>
   </select>
 </div>
