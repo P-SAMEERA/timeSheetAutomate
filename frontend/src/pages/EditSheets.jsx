@@ -268,11 +268,10 @@ const EditSheets = () => {
       editMode ? "border-yellow-400" : "border-gray-700"
     } text-gray-200`}
   >
-    <option value="WORK">WORK</option>
-    <option value="LEAVE">LEAVE</option>
-    <option value="WFH">WFH</option>
-    <option value="HOLIDAY">HOLIDAY</option>
-    <option value="OT">OT</option>
+    <option value="A Shift">A Shift</option>
+    <option value="B Shift">B Shift</option>
+    <option value="C Shift">C Shift</option>
+    <option value="GENERAL">GENERAL</option>
   </select>
 </div>
 
