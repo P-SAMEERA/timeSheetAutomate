@@ -48,6 +48,17 @@ const handleUpdate = async () => {
 
   const handleSubmit = async () => {
     if (!selectedDate) return alert("❌ Please select a date first!");
+    if (!selectedDate) return alert("❌ Please select a date first!");
+
+// Check: No hours + no description → reject save
+const hasAnyEntry = tasks.some(
+  (t) => parseFloat(t.hours) > 0 || (t.description && t.description.trim() !== "")
+);
+
+if (!hasAnyEntry) {
+  return alert("❌ Please fill at least one task before saving!");
+}
+
 
     const userId = localStorage.getItem("userId");
     if (!userId) return alert("⚠️ Missing user session!");
